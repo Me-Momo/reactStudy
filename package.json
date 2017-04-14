@@ -25,5 +25,8 @@
   "dependencies": {
     "react": "^15.5.4",
     "react-dom": "^15.5.4"
+  },
+  "repository": {
+    "url":"https://github.com/Me-Momo/reactStudy.git"
   }
 }
