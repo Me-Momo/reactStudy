@@ -1,0 +1,29 @@
+{
+  "name": "echart-study",
+  "version": "1.0.0",
+  "description": "学习,封装echart",
+  "main": "webpack.config.js",
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "mock": "json-server --watch mockServer/db.js --routes mockServer/routes.json --port 9999"
+  },
+  "keywords": [
+    "echart"
+  ],
+  "author": "kasmine",
+  "license": "MIT",
+  "devDependencies": {
+    "axios": "^0.16.1",
+    "faker": "^4.1.0",
+    "gulp": "^3.9.1",
+    "gulp-connect": "^5.0.0",
+    "json-server": "^0.9.6",
+    "lodash": "^4.17.4",
+    "react-scripts": "^0.9.5"
+  },
+  "dependencies": {
+    "react": "^15.5.4",
+    "react-dom": "^15.5.4"
+  }
+}
