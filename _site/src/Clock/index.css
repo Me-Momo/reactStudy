@@ -1,0 +1,11 @@
+.nav-list>li {
+    display: inline-block;
+    cursor: pointer;
+    background:#f0fff7;
+    margin: 0 5px;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+.nav-list>li:hover{
+    background: #e1efe2;
+}

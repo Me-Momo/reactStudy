@@ -14,22 +14,37 @@ export default class Cart extends Component {
             tax: 0.10,
             grandTotal: 0
         }
+        // 在 constructor 中绑定this
+        this.handleSubTotal=this.handleSubTotal.bind(this);
+        this.changeQty=this.changeQty.bind(this);
+        this.removeItem=this.removeItem.bind(this);
     }
-
+    // 使用 componentDidMount 在组件初始化后执行一些操作
     componentDidMount() {
         this.initData();
         this.handleSubTotal();
     }
   
     initData(){
-        axios.get(`http://localhost:9999/cartItems`)
+        axios.get(`http://localhost:9999/api/cartItems`)
             .then(result => {
-                this.setState({ items:result.data });
+                this.setState({ items:result.data },function(){
+
+                });
             }).catch(result=>{
                 console.log(result);
             });
     }
+    handleSubTotal(){
+        let itemTotal=0;
 
+        [].forEach.call(this.state.items, item => {
+            itemTotal += item.price * item.quantity;
+        });
+        this.setState({subTotal: itemTotal});
+        this.handleGrandTotal(itemTotal);
+    }
+    
     changeQty(itemId, qty) {
         let item = _.find(this.state.items, item => item.id === itemId);
         item.quantity = qty;
@@ -45,7 +60,6 @@ export default class Cart extends Component {
     }
 
     removeItem(itemId) {
-
         let items=[].filter.call(this.state.items,function(item){
             return item.id !== itemId;
         });
@@ -53,16 +67,7 @@ export default class Cart extends Component {
           this.handleSubTotal();
         });  
     }
-    handleSubTotal(){
-        let itemTotal=0;
-        // NOTE：这里setState出现延时
-        console.log(this.state.items);
-        [].forEach.call(this.state.items, item => {
-            itemTotal += item.price * item.quantity;
-        });
-        this.setState({subTotal: itemTotal});
-        this.handleGrandTotal(itemTotal);
-    }
+
     handleGrandTotal(subTotal) {
         this.setState({
             grandTotal: (this.state.tax * subTotal) + subTotal
@@ -83,14 +88,11 @@ export default class Cart extends Component {
                 <List
                     items={this.state.items}
                     removeItem={this
-                    .removeItem
-                    .bind(this)}
+                    .removeItem}
                     changeQty={this
-                    .changeQty
-                    .bind(this)}
+                    .changeQty}
                     handleSubTotal={this
-                    .handleGrandTotal
-                    .bind(this)}/>
+                    .handleGrandTotal}/>
                 <tfoot>
                     <tr>
                         <td></td>

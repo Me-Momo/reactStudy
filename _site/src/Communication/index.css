@@ -1,0 +1,41 @@
+.msgBox{
+        height: 300px;
+        width:300px;
+        border: 1px solid #b6b6b6;
+        padding: 8px 12px;
+        margin: 3px 0;
+}
+.msgBox p{
+    margin:0;
+}
+.msgBox .message-speaker{
+    font-weight: 600;
+}
+.msgBox .message-other .message-speaker {
+    margin-right: 15px;
+}
+.msgBox .message-self .message-speaker {
+    float: right;
+    margin-left: 15px;
+}
+.msgBox p.message-self {
+    text-align: right;
+    color: cornflowerblue;
+}
+
+.userInfo-name{
+    display: inline-block;
+    height: 30px;
+    line-height: 30px;
+}
+.msgInputBox{
+    display: inline-block;
+    vertical-align: bottom;
+}
+.listContainer{
+    display: flex;
+}
+.itemContainer{
+    flex:1;
+    margin:5px 10px;
+}
