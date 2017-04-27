@@ -1,9 +1,10 @@
 'use strict'
 const faker = require('faker');
 
-const fakerTest=require('./mock/test.js');
-const cartItems=require('./mock/cartItems.js');
-const todoItems=require('./mock/todoItems.js');
+const fakerTest = require('./mock/test.js');
+const cartItems = require('./mock/cartItems.js');
+const todoItems = require('./mock/todoItems.js');
+const chart = require('./mock/chart.js');
 
 module.exports = function () {
     let data = {
@@ -17,5 +18,6 @@ module.exports = function () {
     Object.assign(data,fakerTest);
     Object.assign(data,cartItems);
     Object.assign(data,todoItems);
+    Object.assign(data,chart);
     return data;
 }

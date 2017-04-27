@@ -1,5 +1,7 @@
 {
     "/api/test":"/faker-test",
     "/api/cartItems":"/cart-items",
-    "/api/todoItems":"/todo-items"
+    "/api/todoItems":"/todo-items",
+    "/api/lineChart":"/line-chart",
+    "/api/barChart":"/bar-chart"
 }
