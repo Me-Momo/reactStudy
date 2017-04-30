@@ -11,6 +11,9 @@ module.exports = {
             test: /\.jsx?$/,
             loaders: ['babel-loader?presets[]=es2015,presets[]=react'],
             exclude: /node_modules/
+        },{
+            test: /\.scss$/,
+            loader: 'style!css!sass'
         }]
     },
     plugins: [

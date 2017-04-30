@@ -1,5 +1,6 @@
 import  React, { Component } from 'react';
 import  axios from 'axios';
+import 'scss/index.scss';
 
 class TodoList extends Component {
 
@@ -26,8 +27,20 @@ class TodoList extends Component {
             acList: []
         }
     }
+
     conpomentDidMount(){
-        
+        this.fetchData('/todoItems')
+            .then((result) =>{
+                this.setState({
+                    todoItems: result.data
+                });
+            },() =>{
+               console.log("Fail to fetch todoItems ....") 
+            });
+    }
+
+    fetchData(url){
+        return axios.get(`http://localhost:9999/api${url}`);
     }
 
     handleChange (itemId){
@@ -71,7 +84,7 @@ class TodoList extends Component {
         return (
             <div>
                 <ul style={{ listStyle: "none"}}>{ todoItems }</ul>
-                <div>
+                <div className="acListBox">
                     已完成清单：{ this.state.acList.join(' , ')}
                 </div>
             </div>

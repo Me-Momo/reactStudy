@@ -142,3 +142,53 @@ render(){
 }
  
 ```
+
+
+### 添加jest测试
+
+```
+npm install jest-cli -g  --save-dev
+```
+
+- 第一个测试
+```javascript
+// sum.js
+function sum(a, b) {
+  return a + b;
+}
+module.exports = sum;
+
+// sum.test.js
+const sum = require('./sum');
+
+test('adds 1 + 2 to equal 3', () => {
+  expect(sum(1, 2)).toBe(3);
+});
+```
+
+命令行输入`jest`,显示输出：
+```bash
+PASS  __test__/sum.test.js
+  ✓ adds 1 + 2 to equal 3 (2ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       1 passed, 1 total
+Snapshots:   0 total
+Time:        1.517s
+Ran all test suites.
+```
+- React 测试
+
+支持 ES6 的import 语法
+```javascript
+npm install --save-dev babel-plugin-transform-es2015-modules-commonjs
+
+// .babelrc
+"env":{
+    "test": {
+            "plugins": ["transform-es2015-modules-commonjs"]
+    }
+}
+```
+
+使用 `ReactTestUtils`（`react-dom/test-utils`)

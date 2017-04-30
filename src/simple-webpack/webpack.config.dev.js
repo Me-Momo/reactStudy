@@ -11,27 +11,20 @@ const HtmlWebpackPlugin = require('html-webpack-plugin'),
 module.exports = {
   devtool: '#cheap-module-eval-source-map',
   entry: [
-    `webpack-dev-server/client?http://localhost:3000`,
+    `webpack-dev-server/client?http://localhost:8080`,
     'webpack/hot/dev-server',
     'react-hot-loader/patch',// 开启 React 代码的模块热替换(HMR)
     './src/main'
   ],
   output: {
-    path: path.join(__dirname, 'dist'),
+    path: __dirname,
     filename: 'bundle.js'
   },
-  plugins: [
-    new webpack.DefinePlugin({
-      '__DEV__': true
-    }),
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin(),
-    new HtmlWebpackPlugin({
-      template: 'src/index.html', // Load a custom template
-      inject: 'body' // Inject all scripts into the body 
-    }),
-    new OpenBrowserPlugin({url: 'http://localhost:3000/',browser:'Google Chrome'})
-  ],
+  resolve: {
+    alias: {
+      scss:path.resolve(__dirname,'src/scss')
+    }
+  },
   module: {
     loaders: [{
             test: /\.jsx?$/,
@@ -40,6 +33,20 @@ module.exports = {
         },{
             test: /\.css$/, // Only .css files
             loader: 'style!css' // Run both loaders
-    }]
-  }
+        },{
+            test:/.scss$/,
+            loader: 'style-loader!css-loader!sass-loader'
+        }]
+  },plugins: [
+    new webpack.DefinePlugin({
+      '__DEV__': true
+    }),
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NoErrorsPlugin(),
+    new HtmlWebpackPlugin({
+      template: 'index.html', // Load a custom template
+      inject: 'body' // Inject all scripts into the body 
+    }),
+    new OpenBrowserPlugin({url: 'http://localhost:8080/',browser:'Google Chrome'})
+  ]
 };
